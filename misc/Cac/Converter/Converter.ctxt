@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Converter
+comment1.params=factor
+comment1.target=Converter(double)
+comment1.text=\n\ Constructor\ of\ Converter\ sets\ f(factor)\ to\ one\ to\ avoid\ errors\n
+comment2.params=
+comment2.target=Converter()
+comment3.params=x
+comment3.target=double\ convertFrom(double)
+comment3.text=\n\ Converts\ the\ given\ value\ through\ the\ given\ factor\n\n\ @param\ x\ value\n\ @return\ x\ times\ f\n
+comment4.params=x
+comment4.target=double\ convertTo(double)
+comment4.text=\n\ Converts\ the\ given\ value\ through\ the\ reciprocal\ of\ the\ given\ factor\n\n\ @param\ x\ value\n\ @return\ x\ times\ reciprocal\ of\ factor\n
+comment5.params=factor
+comment5.target=void\ setFactor(double)
+comment5.text=\n\ Sets\ the\ factor\ for\ the\ converter\n\n\ @param\ x\ factor\n
+comment6.params=
+comment6.target=double\ getFactor()
+numComments=7
