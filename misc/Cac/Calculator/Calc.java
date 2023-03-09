@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * a more oop approach on the Calc_Console_Interface class
  *
  * @author Dizzie
- * @version 3.0
+ * @version 4.0
  */
 public class Calc {
 
