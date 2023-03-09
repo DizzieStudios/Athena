@@ -3,13 +3,13 @@ package Cac.Converter;
 public class Converter {
     double factor;
 
-    /**
-     * Constructor of Converter sets f(factor) to one to avoid errors
-     */
+
     public Converter(double factor) {
         this.factor = factor;
     }
-    
+    /**
+     * Constructor of Converter sets factor to one to avoid errors
+     */
     public Converter() {
         factor = 1;
     }
