@@ -121,5 +121,6 @@ public class Calc {
         int remainderOfFraction = inputNumber % 2;
         return remainderOfFraction == 0;
     }
+    //TODO Find more methods for Calc class.
 }
 
