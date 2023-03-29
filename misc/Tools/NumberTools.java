@@ -1,7 +1,6 @@
-package Cac.Calculator;
+package Tools;
 
 import java.util.concurrent.ThreadLocalRandom;
-
 /**
  * A collection of mathematical operations. Originally used for
  * a more oop approach on the Calc_Console_Interface class
@@ -9,8 +8,98 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Dizzie
  * @version 4.0
  */
-public class Calc {
+public class NumberTools {
+    public static String roundToString(double input, int digits) {
+        if (input == Math.round(input)) {
+            return Math.round(input) + "";
+        }
+        char[] c = (input + "").toCharArray();
+        boolean search = false;
+        int n = 0;
+        int b = 0;
+        for (char ca : c) {
+            if (search) {
+                ++n;
+            } else {
+                ++b;
+            }
+            if ((ca + "").equals(".")) {
+                search = true;
+            }
+        }
 
+        String[] s;
+        if (n > digits) {
+            s = new String[digits + b];
+            for (int i = 0; i < digits + b; i++) {
+                s[i] = c[i] + "";
+            }
+        } else {
+            s = new String[n + b];
+            for (int i = 0; i < n + b; i++) {
+                s[i] = c[i] + "";
+            }
+        }
+        int l = s.length;
+        while (s[l - 1].equals("0")) {
+            s = new String[l - 1];
+            l = s.length;
+            for (int i = 0; i < l; i++) {
+                s[i] = c[i] + "";
+            }
+        }
+        String r = "";
+        for (String sa : s) {
+            r += sa;
+        }
+        return r;
+    }
+
+    public static double roundToDouble(double input, int digits) {
+        if (input == Math.round(input)) {
+            return Math.round(input);
+        }
+        char[] c = (input + "").toCharArray();
+        boolean search = false;
+        int n = 0;
+        int b = 0;
+        for (char ca : c) {
+            if (search) {
+                ++n;
+            } else {
+                ++b;
+            }
+            if ((ca + "").equals(".")) {
+                search = true;
+            }
+        }
+
+        String[] s;
+        if (n > digits) {
+            s = new String[digits + b];
+            for (int i = 0; i < digits + b; i++) {
+                s[i] = c[i] + "";
+            }
+        } else {
+            s = new String[n + b];
+            for (int i = 0; i < n + b; i++) {
+                s[i] = c[i] + "";
+            }
+        }
+        int l = s.length;
+        while (s[l - 1].equals("0")) {
+            s = new String[l - 1];
+            l = s.length;
+            for (int i = 0; i < l; i++) {
+                s[i] = c[i] + "";
+            }
+        }
+        String r = "";
+        for (String sa : s) {
+            r += sa;
+        }
+        return Double.parseDouble(r);
+    }
 
     /**
      * Generates random Number
@@ -100,36 +189,37 @@ public class Calc {
 
     /**
      * Checks if inputNumber is a prime number and if it is returns 'true' otherwise it will return 'false'.
+     *
      * @param inputNumber
      * @return 'true' if inputNumber is a prime number and 'false' if otherwise.
      */
-    public static boolean isPrimeNumber( int inputNumber ) {
+    public static boolean isPrimeNumber(int inputNumber) {
         int remainderOfFraction;
-        for ( int i = 2 ; i < inputNumber ; i++ ) {
+        for (int i = 2; i < inputNumber; i++) {
             remainderOfFraction = inputNumber % i;
-            if ( remainderOfFraction == 0 ) return false;
+            if (remainderOfFraction == 0) return false;
         }
         return true;
     }
 
     /**
      * Checks if inputNumber is even and returns 'true' if it is and 'false' if otherwise.
+     *
      * @param inputNumber
      * @return returns whether inputNumber is even or odd.
      */
-    public static boolean isEven(int inputNumber){
+    public static boolean isEven(int inputNumber) {
         int remainderOfFraction = inputNumber % 2;
         return remainderOfFraction == 0;
     }
 
-    public static int fibonacci(int n){
-        if ( n == 0){
+    public static int fibonacci(int n) {
+        if (n == 0) {
             return 0;
-        } else if ( n == 1) {
+        } else if (n == 1) {
             return 1;
         }
-        return fibonacci(n-1) + fibonacci(n-2);
+        return fibonacci(n - 1) + fibonacci(n - 2);
     }
-    //TODO Find more methods for Calc class.
+    //TODO find new methods
 }
-
