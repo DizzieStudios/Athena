@@ -221,5 +221,24 @@ public class NumberTools {
         }
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
+    public static int roundToInt(double input){
+        char[] c = (input+"").toCharArray();
+        int n = 0;
+        for (char ca:c) {
+            ++n;
+            if ( (ca+"").equals(".") ){
+                break;
+            }
+        }
+        String w = "";
+        for ( int i = 0 ; i < n-1 ; i++){
+            w += c[i]+"";
+        }
+        int r = Integer.parseInt(w);
+        if ( Integer.parseInt(c[n]+"")>4){
+            r++;
+        }
+        return r;
+    }
     //TODO find new methods
 }
