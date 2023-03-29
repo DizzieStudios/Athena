@@ -115,11 +115,20 @@ public class Calc {
     /**
      * Checks if inputNumber is even and returns 'true' if it is and 'false' if otherwise.
      * @param inputNumber
-     * @return returns wether inputNumber is even or odd.
+     * @return returns whether inputNumber is even or odd.
      */
     public static boolean isEven(int inputNumber){
         int remainderOfFraction = inputNumber % 2;
         return remainderOfFraction == 0;
+    }
+
+    public static int fibonacci(int n){
+        if ( n == 0){
+            return 0;
+        } else if ( n == 1) {
+            return 1;
+        }
+        return fibonacci(n-1) + fibonacci(n-2);
     }
     //TODO Find more methods for Calc class.
 }
