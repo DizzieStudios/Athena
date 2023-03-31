@@ -9,96 +9,120 @@ import java.util.concurrent.ThreadLocalRandom;
  * @version 4.0
  */
 public class NumberTools {
+
+    /**
+     * Rounds a double to a specified number of digits.
+     * @param input double to be rounded.
+     * @param digits digits after the decimal point to be displayed
+     * @return input rounded to specified digits after the decimal point as a String, if the double has fewer digits than specified it will only return up to the last digit.
+     */
     public static String roundToString(double input, int digits) {
-        if (input == Math.round(input)) {
+        if ( input == Math.round(input) ) {
             return Math.round(input) + "";
         }
-        char[] c = (input + "").toCharArray();
-        boolean search = false;
-        int n = 0;
-        int b = 0;
-        for (char ca : c) {
-            if (search) {
-                ++n;
+        char[] arrayOfCharsInGivenDouble = (input + "").toCharArray();
+        boolean searchForDigitsAfterDecimalPoint = false;
+        int digitsAfterDecimalPoint = 0;
+        int digitsBeforeDecimalPoint = 0;
+        int lastDigitAfterDecimalPoint = 0;
+        for ( char forEachLoopCharArray : arrayOfCharsInGivenDouble ) {
+            if ( searchForDigitsAfterDecimalPoint ) {
+                ++digitsAfterDecimalPoint;
             } else {
-                ++b;
+                ++digitsBeforeDecimalPoint;
             }
-            if ((ca + "").equals(".")) {
-                search = true;
+            if ((forEachLoopCharArray + "").equals(".")) {
+                searchForDigitsAfterDecimalPoint = true;
             }
         }
 
-        String[] s;
-        if (n > digits) {
-            s = new String[digits + b];
-            for (int i = 0; i < digits + b; i++) {
-                s[i] = c[i] + "";
+        String[] stringArrayOfDouble;
+        if (digitsAfterDecimalPoint > digits) {
+            stringArrayOfDouble = new String[digits + digitsBeforeDecimalPoint];
+            for (int currentDigit = 0; currentDigit < digits + digitsBeforeDecimalPoint; currentDigit++) {
+                stringArrayOfDouble[currentDigit] = arrayOfCharsInGivenDouble[currentDigit] + "";
             }
+            lastDigitAfterDecimalPoint = Integer.parseInt(arrayOfCharsInGivenDouble[digits+digitsBeforeDecimalPoint]+"");
         } else {
-            s = new String[n + b];
-            for (int i = 0; i < n + b; i++) {
-                s[i] = c[i] + "";
+            stringArrayOfDouble = new String[digitsAfterDecimalPoint + digitsBeforeDecimalPoint];
+            for (int currentDigit = 0; currentDigit < digitsAfterDecimalPoint + digitsBeforeDecimalPoint; currentDigit++) {
+                stringArrayOfDouble[currentDigit] = arrayOfCharsInGivenDouble[currentDigit] + "";
             }
         }
-        int l = s.length;
-        while (s[l - 1].equals("0")) {
-            s = new String[l - 1];
-            l = s.length;
-            for (int i = 0; i < l; i++) {
-                s[i] = c[i] + "";
+        int lengthOfStringArrayOfDouble = stringArrayOfDouble.length;
+        while (stringArrayOfDouble[lengthOfStringArrayOfDouble - 1].equals("0")) {
+            stringArrayOfDouble = new String[lengthOfStringArrayOfDouble - 1];
+            lengthOfStringArrayOfDouble = stringArrayOfDouble.length;
+            for (int currentDigit = 0; currentDigit < lengthOfStringArrayOfDouble; currentDigit++) {
+                stringArrayOfDouble[currentDigit] = arrayOfCharsInGivenDouble[currentDigit] + "";
             }
         }
-        String r = "";
-        for (String sa : s) {
-            r += sa;
+        if ( lastDigitAfterDecimalPoint > 5){
+            stringArrayOfDouble[lengthOfStringArrayOfDouble-1] = (Integer.parseInt(arrayOfCharsInGivenDouble[lengthOfStringArrayOfDouble-1] + "")+1)+"";
         }
-        return r;
+        String stringOfDoubleToBeReturned = "";
+        for (String sa : stringArrayOfDouble) {
+            stringOfDoubleToBeReturned += sa;
+        }
+        return stringOfDoubleToBeReturned;
     }
 
+    /**
+     * Rounds a double to a specified number of digits.
+     * @param input double to be rounded.
+     * @param digits digits after the decimal point to be displayed
+     * @return input rounded to specified digits after the decimal point, if the double has fewer digits than specified it will only return up to the last digit.
+     */
     public static double roundToDouble(double input, int digits) {
         if (input == Math.round(input)) {
             return Math.round(input);
         }
-        char[] c = (input + "").toCharArray();
-        boolean search = false;
-        int n = 0;
-        int b = 0;
-        for (char ca : c) {
-            if (search) {
-                ++n;
+        char[] charArrayOfGivenDouble = (input + "").toCharArray();
+        boolean searchForDigitsAfterDecimalPoint = false;
+        int digitsAfterDecimalPoint = 0;
+        int digitsBeforeDecimalPoint = 0;
+        int lastDigitAfterDecimalPoint = 0;
+        for (char forEachLoopCharArray : charArrayOfGivenDouble) {
+            if (searchForDigitsAfterDecimalPoint) {
+                ++digitsAfterDecimalPoint;
             } else {
-                ++b;
+                ++digitsBeforeDecimalPoint;
             }
-            if ((ca + "").equals(".")) {
-                search = true;
+            if ((forEachLoopCharArray + "").equals(".")) {
+                searchForDigitsAfterDecimalPoint = true;
             }
         }
 
-        String[] s;
-        if (n > digits) {
-            s = new String[digits + b];
-            for (int i = 0; i < digits + b; i++) {
-                s[i] = c[i] + "";
+        String[] stringArrayOfDouble;
+        if (digitsAfterDecimalPoint > digits) {
+            stringArrayOfDouble = new String[digits + digitsBeforeDecimalPoint];
+            for (int currentDigit = 0; currentDigit < digits + digitsBeforeDecimalPoint; currentDigit++) {
+                stringArrayOfDouble[currentDigit] = charArrayOfGivenDouble[currentDigit] + "";
             }
+            lastDigitAfterDecimalPoint = Integer.parseInt(charArrayOfGivenDouble[digits+digitsBeforeDecimalPoint]+"");
         } else {
-            s = new String[n + b];
-            for (int i = 0; i < n + b; i++) {
-                s[i] = c[i] + "";
+            stringArrayOfDouble = new String[digitsAfterDecimalPoint + digitsBeforeDecimalPoint];
+            for (int currentDigit = 0; currentDigit < digitsAfterDecimalPoint + digitsBeforeDecimalPoint; currentDigit++) {
+                stringArrayOfDouble[currentDigit] = charArrayOfGivenDouble[currentDigit] + "";
             }
         }
-        int l = s.length;
-        while (s[l - 1].equals("0")) {
-            s = new String[l - 1];
-            l = s.length;
-            for (int i = 0; i < l; i++) {
-                s[i] = c[i] + "";
+        int lengthOfStringArrayOfDouble = stringArrayOfDouble.length;
+        while (stringArrayOfDouble[lengthOfStringArrayOfDouble - 1].equals("0")) {
+            stringArrayOfDouble = new String[lengthOfStringArrayOfDouble - 1];
+            lengthOfStringArrayOfDouble = stringArrayOfDouble.length;
+            for (int currentDigit = 0; currentDigit < lengthOfStringArrayOfDouble; currentDigit++) {
+                    stringArrayOfDouble[currentDigit] = charArrayOfGivenDouble[currentDigit] + "";
             }
         }
-        String r = "";
-        for (String sa : s) {
-            r += sa;
+        if ( lastDigitAfterDecimalPoint > 4){
+                stringArrayOfDouble[lengthOfStringArrayOfDouble-1] = (Integer.parseInt(charArrayOfGivenDouble[lengthOfStringArrayOfDouble-1] + "")+1)+"";
+            }
+
+        String stringOfDouble = "";
+        for (String sa : stringArrayOfDouble) {
+            stringOfDouble += sa;
         }
-        return Double.parseDouble(r);
+        return Double.parseDouble(stringOfDouble);
     }
 
     /**
@@ -119,17 +143,17 @@ public class NumberTools {
      * @return decimalNumber in the binary system
      */
     public static long Binary(int decimalNumber) {
-        int b = decimalNumber;
-        int d = 0;
-        while (b > 0) {
-            b = b / 2;
-            d++;
+        int decimalNumberCopy = decimalNumber;
+        int digitsOfBinaryNumber = 0;
+        while (decimalNumberCopy > 0) {
+            decimalNumberCopy = decimalNumberCopy / 2;
+            digitsOfBinaryNumber++;
         }
-        long[] binaryArray = new long[d];
-        String[] binaryStringArray = new String[d];
-        for (int j = d - 1; j >= 0; j--) {
-            binaryArray[j] = decimalNumber % 2;
-            binaryStringArray[j] = binaryArray[j] + "";
+        long[] binaryArray = new long[digitsOfBinaryNumber];
+        String[] binaryStringArray = new String[digitsOfBinaryNumber];
+        for (int currentBinaryDigit = digitsOfBinaryNumber - 1; currentBinaryDigit >= 0; currentBinaryDigit--) {
+            binaryArray[currentBinaryDigit] = decimalNumber % 2;
+            binaryStringArray[currentBinaryDigit] = binaryArray[currentBinaryDigit] + "";
             decimalNumber = decimalNumber / 2;
         }
         String binaryString = String.join("", binaryStringArray);
@@ -146,19 +170,19 @@ public class NumberTools {
         int digitsOfBinaryNumber = binaryNumberString.length();
         int[] binaryNumberArray = new int[digitsOfBinaryNumber];
         String[] binaryStringArray = new String[digitsOfBinaryNumber];
-        long n = 0;
-        for (int i = 0; i < digitsOfBinaryNumber; i++) {
-            binaryStringArray[i] = binaryNumberString.substring(i, i + 1);
+        long decimalNumber = 0;
+        for (int currentDigit = 0; currentDigit < digitsOfBinaryNumber; currentDigit++) {
+            binaryStringArray[currentDigit] = binaryNumberString.substring(currentDigit, currentDigit + 1);
         }
-        for (int i = 0; i < digitsOfBinaryNumber; i++) {
-            binaryNumberArray[i] = Integer.parseInt(binaryStringArray[i]);
+        for (int currentDigit = 0; currentDigit < digitsOfBinaryNumber; currentDigit++) {
+            binaryNumberArray[currentDigit] = Integer.parseInt(binaryStringArray[currentDigit]);
         }
-        int v2 = digitsOfBinaryNumber - 1;
-        for (int i = 0; i < digitsOfBinaryNumber; i++) {
-            n = n + Math.round(Math.pow(2, v2)) * binaryNumberArray[i];
-            v2--;
+        int powerOfBinaryDigit = digitsOfBinaryNumber - 1;
+        for (int currentDigit = 0; currentDigit < digitsOfBinaryNumber; currentDigit++) {
+            decimalNumber = decimalNumber + Math.round(Math.pow(2, powerOfBinaryDigit)) * binaryNumberArray[currentDigit];
+            powerOfBinaryDigit--;
         }
-        return n;
+        return decimalNumber;
     }
 
     /**
@@ -179,10 +203,10 @@ public class NumberTools {
         for (int i = 0; i < binaryNumberDigits; i++) {
             binaryNumberIntArray[i] = Integer.parseInt(binaryNumberStringArray[i]);
         }
-        int v2 = binaryNumberDigits - 1;
-        for (int i = 0; i < binaryNumberDigits; i++) {
-            decimalReturnValue = decimalReturnValue + Math.round(Math.pow(2, v2)) * binaryNumberIntArray[i];
-            v2--;
+        int powerOfBinaryDigit = binaryNumberDigits - 1;
+        for (int currentDigit = 0; currentDigit < binaryNumberDigits; currentDigit++) {
+            decimalReturnValue = decimalReturnValue + Math.round(Math.pow(2, powerOfBinaryDigit)) * binaryNumberIntArray[currentDigit];
+            powerOfBinaryDigit--;
         }
         return decimalReturnValue;
     }
@@ -195,8 +219,8 @@ public class NumberTools {
      */
     public static boolean isPrimeNumber(int inputNumber) {
         int remainderOfFraction;
-        for (int i = 2; i < inputNumber; i++) {
-            remainderOfFraction = inputNumber % i;
+        for (int numberUpToInputNumber = 2; numberUpToInputNumber < inputNumber; numberUpToInputNumber++) {
+            remainderOfFraction = inputNumber % numberUpToInputNumber;
             if (remainderOfFraction == 0) return false;
         }
         return true;
@@ -209,10 +233,14 @@ public class NumberTools {
      * @return returns whether inputNumber is even or odd.
      */
     public static boolean isEven(int inputNumber) {
-        int remainderOfFraction = inputNumber % 2;
-        return remainderOfFraction == 0;
+        return inputNumber % 2 == 0;
     }
 
+    /**
+     * Returns the n-th number of the fibonacci-sequence.
+     * @param n number of member of the fibonacci-sequence.
+     * @return n-th member of the fibonacci-sequence.
+     */
     public static int fibonacci(int n) {
         if (n == 0) {
             return 0;
@@ -221,24 +249,31 @@ public class NumberTools {
         }
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
+
+    /**
+     *  Returns a double rounded to an int.
+     * @param input double to be rounded.
+     * @return input rounded to int.
+     */
     public static int roundToInt(double input){
         char[] c = (input+"").toCharArray();
-        int n = 0;
+        int digitsBeforeDecimalPoint = 0;
         for (char ca:c) {
-            ++n;
+            ++digitsBeforeDecimalPoint;
             if ( (ca+"").equals(".") ){
                 break;
             }
         }
         String w = "";
-        for ( int i = 0 ; i < n-1 ; i++){
+        for ( int i = 0 ; i < digitsBeforeDecimalPoint-1 ; i++){
             w += c[i]+"";
         }
         int r = Integer.parseInt(w);
-        if ( Integer.parseInt(c[n]+"")>4){
+        if ( Integer.parseInt(c[digitsBeforeDecimalPoint]+"")>4){
             r++;
         }
         return r;
     }
     //TODO find new methods
+    //TODO make code more readable
 }
