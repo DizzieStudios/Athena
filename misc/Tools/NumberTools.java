@@ -274,6 +274,57 @@ public class NumberTools {
         }
         return r;
     }
+    public static int[] comp(int i,int j){
+        int[] n = new int[2];
+        if ( i > j ){
+            n[0] = j;
+            n[1] = i;
+        }else{
+            n[0] = i;
+            n[1] = j;
+        }
+        return n;
+    }
+
+    public static int[] comp(int[] in){
+        int[] n = new int[in.length];
+        int[] c = new int[in.length];
+        int temp;
+        for ( int i = 0 ; i < in.length ; i++ ){
+            c[i] = i;
+        }
+        for ( int i : in ){
+            for ( int j = 0 ; j < in.length-1 ; j++ ){
+                if ( in[c[j]] > in[c[j+1]] ){
+                    temp = c[j];
+                    c[j] = c[j+1];
+                    c[j+1] = temp;
+                }
+            }
+        }
+        for ( int i = 0 ; i < in.length ; i++ ){
+            n[i] = in[c[i]];
+        }
+        return n;
+    }
+
+    public static int[] compareIndices(int[] in){
+        int[] c = new int[in.length];
+        int temp;
+        for ( int i = 0 ; i < in.length ; i++ ){
+            c[i] = i;
+        }
+        for ( int i : in ){
+            for ( int j = 0 ; j < in.length-1 ; j++ ){
+                if ( in[c[j]] > in[c[j+1]] ){
+                    temp = c[j];
+                    c[j] = c[j+1];
+                    c[j+1] = temp;
+                }
+            }
+        }
+        return c;
+    }
     //TODO find new methods
     //TODO make code more readable
 }

@@ -1,4 +1,5 @@
 
+import Tools.Alphabet;
 import Tools.NumberTools;
 class Test {
 
