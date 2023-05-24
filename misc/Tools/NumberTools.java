@@ -325,6 +325,13 @@ public class NumberTools {
         }
         return c;
     }
+    public static int[] swap(int[] array, int n, int n2){
+        int[] a =array;
+        int temp = a[n];
+        a[n] = a[n2];
+        a[n2] = temp;
+        return a;
+    }
     //TODO find new methods
     //TODO make code more readable
 }
